@@ -6,7 +6,9 @@ LiquidCrystal lcd(6, 7, 8, 9, 10, 11);
 DHT dht(4, DHT11);
 int pin_foto = A0;
 int serv = 2;
+
 void setup() {
+  
 lcd.begin(16, 2);
 s1.attach(serv);
 Serial.begin(9600);
@@ -15,13 +17,20 @@ dht.begin();
 
 void loop() {
 dht.read();
-s1.write(30);
-analogRead(pin_foto);
-lcd.setCursor(0, 0);
-lcd.print("Fotorezister:");
-lcd.setCursor(0, 1);
-lcd.print(pin_foto);
+int foto = analogRead(pin_foto);
+Serial.println(foto);
+
 lcd.clear();
+lcd.setCursor(0, 0);
+lcd.print("Fotorez:");
+lcd.setCursor(0, 1);
+lcd.print(foto);
+map(value ,0 , 1022 ,0 ,180);
+
+if (foto > 300){
+  s1.write(30);
+}
+
   switch(dht.getState()) {
     case DHT_OK:
       Serial.print("Temperature = ");
