@@ -5,10 +5,28 @@ Servo s1;
 LiquidCrystal lcd(6, 7, 8, 9, 10, 11);
 DHT dht(4, DHT11);
 int pin_foto = A0;
+int pin_foto2 = A1;
+int pin_foto3 = A2;
+int pin_foto4 = A3;
+int pin_foto5 = A4;
+
+int svet = 3;
+int svet2 = 5;
+int svet3 = 12;
+int svet4 = 13;
+//svet c pin_foto2 зел север
+//svet2 c pin_foto3 фиол юг
+//svet3 c pin_foto4 краст запад
+//svet4 c pin_foto5 жёлт восток
+
 int serv = 2;
 
 void setup() {
-  
+pinMode(svet, OUTPUT);
+pinMode(svet2, OUTPUT);
+pinMode(svet3, OUTPUT);
+pinMode(svet4, OUTPUT);
+
 lcd.begin(16, 2);
 s1.attach(serv);
 Serial.begin(9600);
@@ -19,17 +37,47 @@ void loop() {
 dht.read();
 int foto = analogRead(pin_foto);
 Serial.println(foto);
+int foto2 = analogRead(pin_foto2);
+Serial.println(foto2);
+int foto3 = analogRead(pin_foto3);
+Serial.println(foto3);
+int foto4 = analogRead(pin_foto4);
+Serial.println(foto4);
 
 lcd.clear();
 lcd.setCursor(0, 0);
 lcd.print("Fotorez:");
 lcd.setCursor(0, 1);
 lcd.print(foto);
-map(value ,0 , 1022 ,0 ,180);
 
-if (foto > 300){
-  s1.write(30);
-}
+int val = analogRead(0);
+map(val ,160 ,500 ,0 ,170);
+s1.write(val);
+
+if (svet = foto2 < 200){
+  digitalWrite(svet, HIGH);
+  }else{
+  digitalWrite(svet, LOW);
+  }
+
+if (svet2 = foto2 < 200){
+  digitalWrite(svet2, HIGH);
+  }else{
+  digitalWrite(svet2, LOW);
+  }
+
+if (svet3 = foto3 < 200){
+  digitalWrite(svet3, HIGH);
+  }else{
+  digitalWrite(svet3, LOW);
+  }
+
+if (svet4 = foto4 < 200){
+  digitalWrite(svet4, HIGH);
+  }else{
+  digitalWrite(svet4, LOW);
+  }
+
 
   switch(dht.getState()) {
     case DHT_OK:
