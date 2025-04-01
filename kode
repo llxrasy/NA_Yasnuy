@@ -72,10 +72,6 @@ lcd.print(svet4);
 lcd.print(",");
 lcd.print(foto5);
 
-
-lcd.print("вост:");
-lcd.print(svet4);
-
 int val = analogRead(0);
 map(val ,160 ,500 ,0 ,170);
 s1.write(val);
