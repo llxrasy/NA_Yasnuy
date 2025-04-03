@@ -15,7 +15,7 @@ int svet2 = 9;
 int svet3 = 10;
 int svet4 = 13;
 //svet c pin_foto2 зел север
-//svet2 c pin_foto3 фиол юг
+//svet2 c pin_foto3 бел юг
 //svet3 c pin_foto4 краст запад
 //svet4 c pin_foto5 жёлт восток
 
@@ -34,55 +34,65 @@ dht.begin();
 }
 
 void loop() {
+
+ //вывод данных в монитор порта
 dht.read();
 int foto = analogRead(pin_foto);
-Serial.println(foto);
+Serial.print(foto);
+Serial.print("   ");
 int foto2 = analogRead(pin_foto2);
-Serial.println(foto2);
+Serial.print(foto2);
+Serial.print("   ");
 int foto3 = analogRead(pin_foto3);
-Serial.println(foto3);
+Serial.print(foto3);
+Serial.print("   ");
 int foto4 = analogRead(pin_foto4);
-Serial.println(foto4);
+Serial.print(foto4);
+Serial.print("   ");
 int foto5 = analogRead(pin_foto5);
 Serial.println(foto5);
 
+// Мониторинг солнечной энергии и активности
 lcd.clear();
 lcd.print("Foto:");
 lcd.print(foto);
 lcd.print(",");
+lcd.setCursor(10, 0);
 lcd.print("sev:");
 lcd.print(svet);
 lcd.print(",");
 lcd.print(foto2);
 lcd.print(",");
-lcd.setCursor(0, 1);
-lcd.print("south:");
+lcd.setCursor(10, 1);
+lcd.print("sout:");
 lcd.print(svet2);
 lcd.print(",");
 lcd.print(foto3);
-lcd.print(",");
-lcd.setCursor(0, 2);
+lcd.setCursor(10, 2);
 lcd.print("3ap:");
 lcd.print(svet3);
 lcd.print(",");
 lcd.print(foto4);
 lcd.print(",");
+lcd.setCursor(10, 3);
 lcd.print("west:");
 lcd.print(svet4);
 lcd.print(",");
 lcd.print(foto5);
 
-int val = analogRead(0);
+//Автоматическое вычисление угла попадания солнечного света
+int val = analogRead(A0);
 map(val ,160 ,500 ,0 ,170);
 s1.write(val);
 
-if (svet = foto2 < 250){
+//Определяет направление и движение солнца
+if (svet == foto2 < 250){
   digitalWrite(svet, HIGH);
   }else{
   digitalWrite(svet, LOW);
   }
 
-if (svet2 = foto3 < 250){
+if (svet2 == foto3 < 250){
   digitalWrite(svet2, HIGH);
   }else{
   digitalWrite(svet2, LOW);
@@ -100,21 +110,16 @@ if (svet4 = foto5 < 250){
   digitalWrite(svet4, LOW);
   }
 
-
+//Измерения температуры солнца
   switch(dht.getState()) {
     case DHT_OK:
       Serial.print("Temperature = ");
       Serial.print(dht.getTemperatureC());
       Serial.println(" C \t");
-      Serial.print("Temperature = ");
-      Serial.print(dht.getTemperatureK());
-      Serial.println(" K \t");
-      Serial.print("Temperature = ");
-      Serial.print(dht.getTemperatureF());
-      Serial.println(" F \t");
-      Serial.print("Humidity = ");
+    
+     /* Serial.print("Humidity = ");
       Serial.print(dht.getHumidity());
-      Serial.println(" %");
+      Serial.println(" %");*/
       break;
     case DHT_ERROR_CHECKSUM:
       Serial.println("Checksum error");
