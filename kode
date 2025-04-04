@@ -88,25 +88,29 @@ s1.write(val);
 //Определяет направление и движение солнца
 if (svet == foto2 < 250){
   digitalWrite(svet, HIGH);
-  }else{
+  }
+else{
   digitalWrite(svet, LOW);
   }
 
 if (svet2 == foto3 < 250){
   digitalWrite(svet2, HIGH);
-  }else{
+  }
+else{
   digitalWrite(svet2, LOW);
   }
 
 if (svet3 = foto4 < 250){
   digitalWrite(svet3, HIGH);
-  }else{
+  }
+else{
   digitalWrite(svet3, LOW);
   }
 
 if (svet4 = foto5 < 250){
   digitalWrite(svet4, HIGH);
-  }else{
+  }
+else{
   digitalWrite(svet4, LOW);
   }
 
