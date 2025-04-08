@@ -27,6 +27,11 @@ pinMode(svet2, OUTPUT);
 pinMode(svet3, OUTPUT);
 pinMode(svet4, OUTPUT);
 
+ /* digitalWrite(svet, HIGH);
+    digitalWrite(svet2, HIGH);
+      digitalWrite(svet3, HIGH);
+        digitalWrite(svet4, HIGH);*/
+
 lcd.begin(20, 4);
 s1.attach(serv);
 Serial.begin(9600);
@@ -86,28 +91,28 @@ map(val ,160 ,500 ,0 ,170);
 s1.write(val);
 
 //Определяет направление и движение солнца
-if (svet == foto2 < 250){
+if (foto2 < 250){
   digitalWrite(svet, HIGH);
   }
 else{
   digitalWrite(svet, LOW);
   }
 
-if (svet2 == foto3 < 250){
+if (foto3 < 250){
   digitalWrite(svet2, HIGH);
   }
 else{
   digitalWrite(svet2, LOW);
   }
 
-if (svet3 = foto4 < 250){
+if (foto4 < 250){
   digitalWrite(svet3, HIGH);
   }
 else{
   digitalWrite(svet3, LOW);
   }
 
-if (svet4 = foto5 < 250){
+if (foto5 < 250){
   digitalWrite(svet4, HIGH);
   }
 else{
